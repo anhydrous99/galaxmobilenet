@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     '--epochs',
     type=int,
-    default=2000,
+    default=20,
     help='Number of times to train over data.'
 )
 parser.add_argument(
@@ -27,7 +27,7 @@ parser.add_argument(
 parser.add_argument(
     '--batch_size',
     type=int,
-    default=32,
+    default=64,
     help='How many images to train on at a time.'
 )
 parser.add_argument(
@@ -74,4 +74,4 @@ if hdf5_path:
     model.save(hdf5_path)
 
 if plot_path:
-    plot_path(history, plot_path)
+    plot_history(history, plot_path)

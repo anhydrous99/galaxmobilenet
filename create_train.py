@@ -6,6 +6,7 @@ from keras.layers import Input
 from keras.models import Model
 from keras.optimizers import Adam
 
+
 def create_and_train(data_frame, image_dir, batch_size, epochs, perc_valid, lr, n_classes):
     # Create model
     init = Input(shape=(224, 224, 3))
@@ -21,7 +22,7 @@ def create_and_train(data_frame, image_dir, batch_size, epochs, perc_valid, lr, 
                'Class9.1', 'Class9.2', 'Class9.3', 'Class10.1', 'Class10.2', 'Class10.3',
                'Class11.1', 'Class11.2', 'Class11.3', 'Class11.4', 'Class11.5', 'Class11.6']
 
-    reduce_lr = ReduceLROnPlateau(factor=0.5, patience=10, verbose=1, min_delta=0.00005)
+    reduce_lr = ReduceLROnPlateau(factor=0.5, patience=2, verbose=1)
 
     model.compile(
         loss='mean_squared_error',
@@ -38,7 +39,7 @@ def create_and_train(data_frame, image_dir, batch_size, epochs, perc_valid, lr, 
         horizontal_flip=True,
         vertical_flip=True,
         rescale=1. / 255.,
-        validation_split=1. / perc_valid
+        validation_split=1./perc_valid
     )
     train_flow = generator.flow_from_dataframe(
         dataframe=data_frame,
@@ -64,7 +65,7 @@ def create_and_train(data_frame, image_dir, batch_size, epochs, perc_valid, lr, 
         generator=train_flow,
         steps_per_epoch=train_flow.n // train_flow.batch_size,
         validation_data=valid_flow,
-        validation_steps=3 * (train_flow.n // train_flow.batch_size),
+        validation_steps=3 * (valid_flow.n // valid_flow.batch_size),
         callbacks=[reduce_lr],
         epochs=epochs
     )
