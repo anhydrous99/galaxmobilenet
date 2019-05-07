@@ -1,5 +1,5 @@
-from keras.layers import Conv2D, BatchNormalization, Activation, DepthwiseConv2D, AveragePooling2D, Dense, \
-    ZeroPadding2D, Flatten
+from tensorflow.python.keras.layers import Conv2D, BatchNormalization, Activation, DepthwiseConv2D, AveragePooling2D, \
+    Dense, ZeroPadding2D, Flatten
 
 
 def convolution_block(input_tensor, filters, kernel_size=(1, 1), strides=(1, 1), padding='same'):

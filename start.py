@@ -1,5 +1,4 @@
 import argparse
-
 from create_train import create_and_train
 from utils import import_dataframe, plot_history
 

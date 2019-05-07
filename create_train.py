@@ -1,10 +1,9 @@
 from model import mobile_net
-
-from keras.callbacks import ReduceLROnPlateau
-from keras.preprocessing.image import ImageDataGenerator
-from keras.layers import Input
-from keras.models import Model
-from keras.optimizers import Adam
+from tensorflow.python.keras.callbacks import ReduceLROnPlateau
+from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.python.keras.layers import Input
+from tensorflow.python.keras.models import Model
+from tensorflow.python.keras.optimizers import Adam
 
 
 def create_and_train(data_frame, image_dir, batch_size, epochs, perc_valid, lr, n_classes):
