@@ -1,4 +1,4 @@
-from model import mobile_net
+from model import mobile_net_v2
 from tensorflow.python.keras.callbacks import ReduceLROnPlateau
 from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.python.keras.layers import Input
@@ -9,7 +9,7 @@ from tensorflow.python.keras.optimizers import Adam
 def create_and_train(data_frame, image_dir, batch_size, epochs, perc_valid, lr, n_classes):
     # Create model
     init = Input(shape=(224, 224, 3))
-    x = mobile_net(init, n_classes)
+    x = mobile_net_v2(init, n_classes)
     model = Model(inputs=init, outputs=x, name="GalaxyMobileNetv1")
 
     opt = Adam(lr=lr)
